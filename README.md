@@ -1,1 +1,1 @@
-# NLP-pos-tagging-using-HMM-model
+# NLP-pos-tagging-using-Hidden-Markov-Model
