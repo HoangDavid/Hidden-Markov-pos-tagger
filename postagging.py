@@ -211,31 +211,7 @@ def test(filename, trans_mx, emiss_mx, tag_count, tag_to_idx, word_to_idx, init_
 
     o = correct / c
 
-    return f'Accuracy:{o}; # Correct: {correct}; # Incorrect:{incorrect}; Total: {c}'
+    return (f'Accuracy:{o}; #Correct: {correct}; #Incorrect:{incorrect}; Total: {c}')
 
-def main():
-    # start the timer
-    start_time = time.time()
-
-    # Training the model
-    transition_count, emission_count, tag_count, word_count, f_tag_counter, f_tag_total = process_file('WSJ_02-21.pos')
-    trans_mx, tag_to_idx = transition_matrix(transition_count, tag_count)
-    emiss_mx, word_to_idx = emission_matrix(emission_count, tag_count, word_count)
-
-    # Testing the model
-    init_prob = init(tag_count, f_tag_counter, f_tag_total)
-    test_sentence = input("sample:")
-    obs = re.findall(r'\w+|[^\w\s]', test_sentence)
-
-    path = viterbi(trans_mx, emiss_mx, tag_count, tag_to_idx, word_to_idx, init_prob, obs)
-    print(f'output: {path}')
-    print(test('WSJ_24.pos',trans_mx, emiss_mx, tag_count, tag_to_idx, word_to_idx, init_prob))
-
-    print()
-    print("--- %s seconds ---" % (time.time() - start_time))
-
-
-if __name__ == "__main__":
-    main()
         
 
